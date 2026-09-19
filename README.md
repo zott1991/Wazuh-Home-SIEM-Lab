@@ -7,17 +7,15 @@ A hands-on cybersecurity home lab built with Wazuh and VirtualBox to develop pra
 
 ---
 
-## 🎯 Project Overview
+## Project Overview
 
 This project is an evolving cybersecurity home lab designed to provide practical experience with security monitoring and detection engineering in a controlled environment.
 
 The lab currently uses a Wazuh SIEM deployment and a Kali Linux endpoint to generate, collect, analyze, and investigate security telemetry.
 
-The project is being developed incrementally, with each phase documenting the implementation, testing, troubleshooting, and lessons learned.
+Each phase documents implementation, testing, troubleshooting, and lessons learned.
 
----
-
-## 🏗️ Current Lab Environment
+## Current Lab Environment
 
 | Component | Technology |
 |---|---|
@@ -30,9 +28,7 @@ The project is being developed incrementally, with each phase documenting the im
 | Telemetry | Journald / SSH |
 | Detection | Wazuh built-in & custom rules |
 
----
-
-## 🔍 Current Capabilities
+## Current Capabilities
 
 - SIEM deployment and administration
 - Endpoint agent deployment
@@ -46,11 +42,9 @@ The project is being developed incrementally, with each phase documenting the im
 - Controlled attack simulation
 - Alert investigation
 - Infrastructure troubleshooting
-- Detection validation using positive and negative test cases
+- Positive and negative detection validation
 
----
-
-## 📊 Project Progress
+## Project Progress
 
 | Phase | Focus | Status |
 |---|---|---|
@@ -61,9 +55,7 @@ The project is being developed incrementally, with each phase documenting the im
 | Phase 4 | Incident Investigation | 🔄 Planned |
 | Future | Additional Endpoints & Detections | 🔄 Planned |
 
----
-
-## 🚨 Detection Engineering
+## Detection Engineering
 
 ### SSH Repeated Nonexistent-User Detection
 
@@ -74,8 +66,6 @@ The project is being developed incrementally, with each phase documenting the im
 **Timeframe:** 120 seconds
 
 The custom detection identifies repeated SSH attempts involving nonexistent usernames from the same source IP.
-
-Detection logic:
 
 ```text
 Rule 5710
@@ -89,3 +79,52 @@ Within 120 seconds
 Custom Rule 100100
     ↓
 Level 10 Alert
+```
+
+The detection was tested using `wazuh-logtest`, deployed to the live Wazuh Manager, triggered through controlled SSH activity, and investigated through the Wazuh Dashboard.
+
+### Detection Evidence
+
+![Custom Rule 100100 Threat Hunting](screenshots/phase-3/07-rule-100100-threat-hunting.png)
+
+![Custom Rule 100100 Events](screenshots/phase-3/08-rule-100100-events.png)
+
+![Custom Rule 100100 Event Details](screenshots/phase-3/09-rule-100100-event-details.png)
+
+## Phase Documentation
+
+- [Phase 0 — Environment Setup & Recovery](phases/phase-0/README.md)
+- [Phase 1 — Wazuh Agent Deployment](phases/phase-1/README.md)
+- [Phase 2 — SIEM Telemetry Validation](phases/phase-2/README.md)
+- [Phase 3 — Detection Development](phases/phase-3/README.md)
+
+## Troubleshooting
+
+The lab documents infrastructure problems rather than hiding them, including Wazuh Indexer startup timeout, service recovery, VirtualBox networking, agent connectivity, and filesystem exhaustion caused by vulnerability-updater temporary data.
+
+## Project Structure
+
+```text
+wazuh-home-siem-lab/
+├── README.md
+├── phases/
+├── detections/
+├── screenshots/
+├── troubleshooting/
+└── docs/
+```
+
+## Future Development
+
+- Additional custom detections
+- Additional monitored endpoints
+- Incident investigation workflows
+- Alert tuning
+- Threat hunting exercises
+- Expanded MITRE ATT&CK coverage
+- Improved infrastructure monitoring
+- Portfolio-oriented case studies
+
+## Disclaimer
+
+This project is conducted in a controlled home laboratory environment for educational and professional development purposes. All attack simulations and security testing are performed against systems owned and operated as part of the lab.

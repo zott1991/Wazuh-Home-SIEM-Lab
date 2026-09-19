@@ -1,0 +1,10 @@
+<group name="custom_sshd,">
+  <rule id="100100" level="10" frequency="3" timeframe="120">
+    <if_matched_sid>5710</if_matched_sid>
+    <same_srcip />
+    <description>Repeated SSH attempts against nonexistent usernames from the same source IP.</description>
+    <mitre>
+      <id>T1087</id>
+    </mitre>
+  </rule>
+</group>
